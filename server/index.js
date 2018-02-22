@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const cluster = require('cluster');
 const numCPUs = require('os').cpus().length;
-const seedData = require('./Webdev_data.json');
+// const seedData = require('./Webdev_data.json');
 
 const PORT = process.env.PORT || 5000;
 
@@ -26,13 +26,13 @@ if (cluster.isMaster) {
   app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
 
   // Answer API requests.
-  app.get('/api/hello', function (req, res) {
+  app.get('/api/hello', (req, res)  => {
     res.set('Content-Type', 'application/json');
     res.send('{"message":"Hello from the custom server!"}');
   });
   app.get('/api/json', (req, res) => {
     res.set('Content-Type', 'application/json');
-    res.send(seedData);
+    res.send("This is JSON");
   });
 
   // All remaining requests return the React app, so it can handle routing.
