@@ -78,34 +78,22 @@ If an app was previously deployed with [create-react-app-buildpack](https://gith
 
 ## Local Development
 
-### Run the API Server
+### Run the API Server and the React UI
 
+The React app is configured to proxy backend requests to the local Node server. (See [`"proxy"` config](react-ui/package.json))
 In a terminal:
 
 ```bash
-# Initial setup
+# Initial setup for server dependencies
 npm install
 
-# Start the server
-npm start
-```
-
-
-### Run the React UI
-
-The React app is configured to proxy backend requests to the local Node server. (See [`"proxy"` config](react-ui/package.json))
-
-In a separate terminal from the API server, start the UI:
-
-```bash
-# Always change directory, first
-cd react-ui/
-
-# Initial setup
+# Initial setup for React-UI dependencies
+cd react-ui  //change your directory
 npm install
+cd ..
 
-# Start the server
-npm start
+# Start the server (this will run both api and ui server concurrently)
+npm run dev
 ```
 
 Another great article on the topic: https://medium.freecodecamp.org/how-to-make-create-react-app-work-with-a-node-backend-api-7c5c48acb1b0
